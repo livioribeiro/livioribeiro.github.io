@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `cypher` mod in crate `rusted_cypher`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, cypher">
+
+    <title>rusted_cypher::cypher - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>rusted_cypher</a></p><script>window.sidebarCurrent = {name: 'cypher', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>rusted_cypher</a>::<wbr><a class='mod' href=''>cypher</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-11' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#1-342' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Provides structs used to interact with the cypher transaction endpoint</p>
+
+<p>The types declared in this module, save for <code>Statement</code>, don&#39;t need to be instantiated
+directly, since they can be obtained from the <code>GraphClient</code></p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1><pre class='rust rust-example-rendered'>
+
+<span class='kw'>let</span> <span class='ident'>cypher</span> <span class='op'>=</span> <span class='ident'>Cypher</span>::<span class='ident'>new</span>(<span class='ident'>url</span>, <span class='ident'>headers</span>);
+
+<span class='ident'>cypher</span>.<span class='ident'>exec</span>(<span class='string'>&quot;CREATE (n:CYPHER_QUERY {value: 1})&quot;</span>).<span class='ident'>unwrap</span>();
+
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>query</span> <span class='op'>=</span> <span class='ident'>cypher</span>.<span class='ident'>query</span>();
+<span class='ident'>query</span>.<span class='ident'>add_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;</span>);
+
+<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>query</span>.<span class='ident'>send</span>().<span class='ident'>unwrap</span>();
+
+<span class='kw'>for</span> <span class='ident'>row</span> <span class='kw'>in</span> <span class='ident'>result</span>[<span class='number'>0</span>].<span class='ident'>rows</span>() {
+    <span class='kw'>let</span> <span class='ident'>value</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>row</span>.<span class='ident'>get</span>(<span class='string'>&quot;value&quot;</span>).<span class='ident'>unwrap</span>();
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>value</span>, <span class='number'>1</span>);
+}</pre>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use self::<a class='mod'
+                                            href='./statement/index.html'>statement</a>::<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                            href='./transaction/index.html'>transaction</a>::<a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                            href='./result/index.html'>result</a>::<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='result/index.html'
+                               title='rusted_cypher::cypher::result'>result</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='statement/index.html'
+                               title='rusted_cypher::cypher::statement'>statement</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='transaction/index.html'
+                               title='rusted_cypher::cypher::transaction'>transaction</a></td>
+                        <td class='docblock short'>
+                             <p>Transaction management through neo4j&#39;s transaction endpoint</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Cypher.html'
+                               title='rusted_cypher::cypher::Cypher'>Cypher</a></td>
+                        <td class='docblock short'>
+                             <p>Represents the cypher endpoint of a neo4j server</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.CypherQuery.html'
+                               title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a></td>
+                        <td class='docblock short'>
+                             <p>Represents a cypher query</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rusted_cypher";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

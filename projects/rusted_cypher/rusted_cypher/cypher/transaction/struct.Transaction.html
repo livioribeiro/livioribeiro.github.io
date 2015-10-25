@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Transaction` struct in crate `rusted_cypher`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Transaction">
+
+    <title>rusted_cypher::cypher::transaction::Transaction - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>rusted_cypher</a>::<wbr><a href='../index.html'>cypher</a>::<wbr><a href='index.html'>transaction</a></p><script>window.sidebarCurrent = {name: 'Transaction', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>rusted_cypher</a>::<wbr><a href='../index.html'>cypher</a>::<wbr><a href='index.html'>transaction</a>::<wbr><a class='struct' href=''>Transaction</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-316' class='srclink' href='../../../src/rusted_cypher/cypher/transaction.rs.html#90-98' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Transaction&lt;'a, State: <a class='trait' href='https://doc.rust-lang.org/nightly/core/any/trait.Any.html' title='core::any::Any'>Any</a> = <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Created.html' title='rusted_cypher::cypher::transaction::Created'>Created</a>&gt; {
+    // some fields omitted
+}</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a, State: <a class='trait' href='https://doc.rust-lang.org/nightly/core/any/trait.Any.html' title='core::any::Any'>Any</a>&gt; <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;'a, State&gt;</code></h3><div class='impl-items'><h4 id='method.add_statement' class='method'><code>fn <a href='#method.add_statement' class='fnname'>add_statement</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(&amp;mut self, statement: S)</code></h4>
+<h4 id='method.get_expires' class='method'><code>fn <a href='#method.get_expires' class='fnname'>get_expires</a>(&amp;self) -&gt; &amp;<a class='struct' href='https://doc.rust-lang.org/time/time/struct.Tm.html' title='time::Tm'>Tm</a></code></h4>
+</div><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;'a, <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Created.html' title='rusted_cypher::cypher::transaction::Created'>Created</a>&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(endpoint: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, headers: &amp;'a <a class='struct' href='https://hyperium.github.io/hyper/hyper/header/struct.Headers.html' title='hyper::header::Headers'>Headers</a>) -&gt; <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;'a, <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Created.html' title='rusted_cypher::cypher::transaction::Created'>Created</a>&gt;</code></h4>
+<h4 id='method.with_statement' class='method'><code>fn <a href='#method.with_statement' class='fnname'>with_statement</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(self, statement: S) -&gt; Self</code></h4>
+<h4 id='method.begin' class='method'><code>fn <a href='#method.begin' class='fnname'>begin</a>(self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;'a, <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Started.html' title='rusted_cypher::cypher::transaction::Started'>Started</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>&gt;)</a>, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;'a, <a class='struct' href='../../../rusted_cypher/cypher/transaction/struct.Started.html' title='rusted_cypher::cypher::transaction::Started'>Started</a>&gt;</code></h3><div class='impl-items'><h4 id='method.with_statement' class='method'><code>fn <a href='#method.with_statement' class='fnname'>with_statement</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(&amp;mut self, statement: S) -&gt; &amp;mut Self</code></h4>
+<h4 id='method.exec' class='method'><code>fn <a href='#method.exec' class='fnname'>exec</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>&gt;, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+<h4 id='method.commit' class='method'><code>fn <a href='#method.commit' class='fnname'>commit</a>(self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>&gt;, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+<h4 id='method.rollback' class='method'><code>fn <a href='#method.rollback' class='fnname'>rollback</a>(self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+<h4 id='method.reset_timeout' class='method'><code>fn <a href='#method.reset_timeout' class='fnname'>reset_timeout</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "rusted_cypher";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>
