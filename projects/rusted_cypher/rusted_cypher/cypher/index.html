@@ -45,27 +45,42 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#1-342' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-11' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#1-332' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Provides structs used to interact with the cypher transaction endpoint</p>
 
 <p>The types declared in this module, save for <code>Statement</code>, don&#39;t need to be instantiated
-directly, since they can be obtained from the <code>GraphClient</code></p>
+directly, since they can be obtained from the <code>GraphClient</code>.</p>
 
-<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1><pre class='rust rust-example-rendered'>
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<h2 id='execute-a-single-query' class='section-header'><a href='#execute-a-single-query'>Execute a single query</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='ident'>graph</span> <span class='op'>=</span> <span class='ident'>GraphClient</span>::<span class='ident'>connect</span>(<span class='ident'>URL</span>).<span class='ident'>unwrap</span>();
 
-<span class='kw'>let</span> <span class='ident'>cypher</span> <span class='op'>=</span> <span class='ident'>Cypher</span>::<span class='ident'>new</span>(<span class='ident'>url</span>, <span class='ident'>headers</span>);
+<span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>exec</span>(<span class='string'>&quot;CREATE (n:CYPHER_QUERY {value: 1})&quot;</span>).<span class='ident'>unwrap</span>();
+<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>exec</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n.value AS value&quot;</span>).<span class='ident'>unwrap</span>();
 
-<span class='ident'>cypher</span>.<span class='ident'>exec</span>(<span class='string'>&quot;CREATE (n:CYPHER_QUERY {value: 1})&quot;</span>).<span class='ident'>unwrap</span>();
+<span class='comment'>// Iterate over the results</span>
+<span class='kw'>for</span> <span class='ident'>row</span> <span class='kw'>in</span> <span class='ident'>result</span>.<span class='ident'>rows</span>() {
+    <span class='kw'>let</span> <span class='ident'>value</span> <span class='op'>=</span> <span class='ident'>row</span>.<span class='ident'>get</span>::<span class='op'>&lt;</span><span class='ident'>i32</span><span class='op'>&gt;</span>(<span class='string'>&quot;value&quot;</span>).<span class='ident'>unwrap</span>(); <span class='comment'>// or: let value: i32 = row.get(&quot;value&quot;);</span>
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>value</span>, <span class='number'>1</span>);
+}</pre>
 
-<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>query</span> <span class='op'>=</span> <span class='ident'>cypher</span>.<span class='ident'>query</span>();
-<span class='ident'>query</span>.<span class='ident'>add_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;</span>);
+<h2 id='execute-multiple-queries' class='section-header'><a href='#execute-multiple-queries'>Execute multiple queries</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>query</span> <span class='op'>=</span> <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>query</span>()
+    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;</span>)
+    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:OTHER_CYPHER_QUERY) RETURN n&quot;</span>);
 
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>query</span>.<span class='ident'>send</span>().<span class='ident'>unwrap</span>();
+<span class='kw'>let</span> <span class='ident'>results</span> <span class='op'>=</span> <span class='ident'>query</span>.<span class='ident'>send</span>().<span class='ident'>unwrap</span>();
 
-<span class='kw'>for</span> <span class='ident'>row</span> <span class='kw'>in</span> <span class='ident'>result</span>[<span class='number'>0</span>].<span class='ident'>rows</span>() {
+<span class='kw'>for</span> <span class='ident'>row</span> <span class='kw'>in</span> <span class='ident'>results</span>[<span class='number'>0</span>].<span class='ident'>rows</span>() {
     <span class='kw'>let</span> <span class='ident'>value</span>: <span class='ident'>i32</span> <span class='op'>=</span> <span class='ident'>row</span>.<span class='ident'>get</span>(<span class='string'>&quot;value&quot;</span>).<span class='ident'>unwrap</span>();
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>value</span>, <span class='number'>1</span>);
 }</pre>
+
+<h2 id='start-a-transaction' class='section-header'><a href='#start-a-transaction'>Start a transaction</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>let</span> (<span class='ident'>transaction</span>, <span class='ident'>results</span>) <span class='op'>=</span> <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>transaction</span>()
+    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n&quot;</span>)
+    .<span class='ident'>begin</span>().<span class='ident'>unwrap</span>();
+</pre>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use self::<a class='mod'
                                             href='./statement/index.html'>statement</a>::<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'

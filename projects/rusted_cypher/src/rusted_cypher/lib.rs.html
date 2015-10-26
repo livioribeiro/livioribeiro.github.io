@@ -161,8 +161,6 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! You can execute queries inside a transaction or simply execute queries that commit immediately.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! It MAY be extended to support other resources of the neo4j REST api.</span>
-<span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Code in examples are assumed to be wrapped in:</span>
@@ -235,14 +233,16 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! let (mut transaction, results) = transaction.begin().unwrap();</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! transaction.add_statement(&quot;CREATE (n:IN_TRANSACTION { name: &#39;Python&#39;, level: &#39;high&#39;, safe: true })&quot;);</span>
-<span class='doccomment'>//! transaction.exec().unwrap();</span>
+<span class='doccomment'>//! // Use `exec` to execute a single statement</span>
+<span class='doccomment'>//! transaction.exec(&quot;CREATE (n:IN_TRANSACTION { name: &#39;Python&#39;, level: &#39;high&#39;, safe: true })&quot;)</span>
+<span class='doccomment'>//!     .unwrap();</span>
 <span class='doccomment'>//!</span>
+<span class='doccomment'>//! // use `add_statement` (or `with_statement`) and `send` to executes multiple statements</span>
 <span class='doccomment'>//! let stmt = Statement::new(&quot;MATCH (n:IN_TRANSACTION) WHERE (n.safe = {safeness}) RETURN n&quot;)</span>
 <span class='doccomment'>//!     .with_param(&quot;safeness&quot;, true);</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! transaction.add_statement(stmt);</span>
-<span class='doccomment'>//! let results = transaction.exec().unwrap();</span>
+<span class='doccomment'>//! let results = transaction.send().unwrap();</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! assert_eq!(results[0].data.len(), 2);</span>
 <span class='doccomment'>//!</span>

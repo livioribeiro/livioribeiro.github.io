@@ -372,59 +372,59 @@
 <span id="330">330</span>
 <span id="331">331</span>
 <span id="332">332</span>
-<span id="333">333</span>
-<span id="334">334</span>
-<span id="335">335</span>
-<span id="336">336</span>
-<span id="337">337</span>
-<span id="338">338</span>
-<span id="339">339</span>
-<span id="340">340</span>
-<span id="341">341</span>
-<span id="342">342</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Provides structs used to interact with the cypher transaction endpoint</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! The types declared in this module, save for `Statement`, don&#39;t need to be instantiated</span>
-<span class='doccomment'>//! directly, since they can be obtained from the `GraphClient`</span>
+<span class='doccomment'>//! directly, since they can be obtained from the `GraphClient`.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Execute a single query</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//! # extern crate hyper;</span>
-<span class='doccomment'>//! # extern crate rusted_cypher;</span>
-<span class='doccomment'>//! # use std::collections::BTreeMap;</span>
-<span class='doccomment'>//! # use hyper::Url;</span>
-<span class='doccomment'>//! # use hyper::header::{Authorization, Basic, ContentType, Headers};</span>
-<span class='doccomment'>//! # use rusted_cypher::cypher::Cypher;</span>
-<span class='doccomment'>//! # fn main() {</span>
-<span class='doccomment'>//! # let url = Url::parse(&quot;http://localhost:7474/db/data/transaction&quot;).unwrap();</span>
-<span class='doccomment'>//! #</span>
-<span class='doccomment'>//! # let mut headers = Headers::new();</span>
-<span class='doccomment'>//! # headers.set(Authorization(</span>
-<span class='doccomment'>//! #     Basic {</span>
-<span class='doccomment'>//! #         username: &quot;neo4j&quot;.to_owned(),</span>
-<span class='doccomment'>//! #         password: Some(&quot;neo4j&quot;.to_owned()),</span>
-<span class='doccomment'>//! #     }</span>
-<span class='doccomment'>//! # ));</span>
-<span class='doccomment'>//! #</span>
-<span class='doccomment'>//! # headers.set(ContentType::json());</span>
+<span class='doccomment'>//! # use rusted_cypher::GraphClient;</span>
+<span class='doccomment'>//! # const URL: &amp;&#39;static str = &quot;http://neo4j:neo4j@localhost:7474/db/data&quot;;</span>
+<span class='doccomment'>//! let graph = GraphClient::connect(URL).unwrap();</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! let cypher = Cypher::new(url, headers);</span>
+<span class='doccomment'>//! graph.cypher().exec(&quot;CREATE (n:CYPHER_QUERY {value: 1})&quot;).unwrap();</span>
+<span class='doccomment'>//! let result = graph.cypher().exec(&quot;MATCH (n:CYPHER_QUERY) RETURN n.value AS value&quot;).unwrap();</span>
+<span class='doccomment'>//! # assert_eq!(result.data.len(), 1);</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! cypher.exec(&quot;CREATE (n:CYPHER_QUERY {value: 1})&quot;).unwrap();</span>
+<span class='doccomment'>//! // Iterate over the results</span>
+<span class='doccomment'>//! for row in result.rows() {</span>
+<span class='doccomment'>//!     let value = row.get::&lt;i32&gt;(&quot;value&quot;).unwrap(); // or: let value: i32 = row.get(&quot;value&quot;);</span>
+<span class='doccomment'>//!     assert_eq!(value, 1);</span>
+<span class='doccomment'>//! }</span>
+<span class='doccomment'>//! ```</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! let mut query = cypher.query();</span>
-<span class='doccomment'>//! query.add_statement(&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;);</span>
+<span class='doccomment'>//! ## Execute multiple queries</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! # use rusted_cypher::GraphClient;</span>
+<span class='doccomment'>//! # const URL: &amp;&#39;static str = &quot;http://neo4j:neo4j@localhost:7474/db/data&quot;;</span>
+<span class='doccomment'>//! # let graph = GraphClient::connect(URL).unwrap();</span>
+<span class='doccomment'>//! let mut query = graph.cypher().query()</span>
+<span class='doccomment'>//!     .with_statement(&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;)</span>
+<span class='doccomment'>//!     .with_statement(&quot;MATCH (n:OTHER_CYPHER_QUERY) RETURN n&quot;);</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! let result = query.send().unwrap();</span>
+<span class='doccomment'>//! let results = query.send().unwrap();</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! for row in result[0].rows() {</span>
+<span class='doccomment'>//! for row in results[0].rows() {</span>
 <span class='doccomment'>//!     let value: i32 = row.get(&quot;value&quot;).unwrap();</span>
 <span class='doccomment'>//!     assert_eq!(value, 1);</span>
 <span class='doccomment'>//! }</span>
-<span class='doccomment'>//! # cypher.exec(&quot;MATCH (n:CYPHER_QUERY) delete n&quot;);</span>
-<span class='doccomment'>//! # }</span>
+<span class='doccomment'>//! # graph.cypher().exec(&quot;MATCH (n:CYPHER_QUERY) delete n&quot;);</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Start a transaction</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! # use rusted_cypher::GraphClient;</span>
+<span class='doccomment'>//! # const URL: &amp;&#39;static str = &quot;http://neo4j:neo4j@localhost:7474/db/data&quot;;</span>
+<span class='doccomment'>//! # let graph = GraphClient::connect(URL).unwrap();</span>
+<span class='doccomment'>//! let (transaction, results) = graph.cypher().transaction()</span>
+<span class='doccomment'>//!     .with_statement(&quot;MATCH (n:CYPHER_QUERY) RETURN n&quot;)</span>
+<span class='doccomment'>//!     .begin().unwrap();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! # assert_eq!(results.len(), 1);</span>
 <span class='doccomment'>//! ```</span>
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>transaction</span>;
@@ -533,26 +533,6 @@
     <span class='doccomment'>/// Executes the given `Statement`</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Parameter can be anything that implements `Into&lt;Statement&gt;`, `&amp;str` or `Statement` itself</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// # Examples</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// ```</span>
-    <span class='doccomment'>/// # use rusted_cypher::GraphClient;</span>
-    <span class='doccomment'>/// # use rusted_cypher::Statement;</span>
-    <span class='doccomment'>/// # let graph = GraphClient::connect(&quot;http://neo4j:neo4j@localhost:7474/db/data&quot;).unwrap();</span>
-    <span class='doccomment'>/// # let cypher = graph.cypher();</span>
-    <span class='doccomment'>/// // `&amp;str` implements `Into&lt;Statement&gt;`</span>
-    <span class='doccomment'>/// let result = cypher.exec(&quot;MATCH n RETURN n&quot;);</span>
-    <span class='doccomment'>/// # let result = result.unwrap();</span>
-    <span class='doccomment'>/// # assert_eq!(result.columns.len(), 1);</span>
-    <span class='doccomment'>/// # assert_eq!(result.columns[0], &quot;n&quot;);</span>
-    <span class='doccomment'>/// // Creating `Statement` by hand</span>
-    <span class='doccomment'>/// let statement = Statement::new(&quot;MATCH n RETURN n&quot;);</span>
-    <span class='doccomment'>/// let result = cypher.exec(statement);</span>
-    <span class='doccomment'>/// # let result = result.unwrap();</span>
-    <span class='doccomment'>/// # assert_eq!(result.columns.len(), 1);</span>
-    <span class='doccomment'>/// # assert_eq!(result.columns[0], &quot;n&quot;);</span>
-    <span class='doccomment'>/// ```</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>exec</span><span class='op'>&lt;</span><span class='ident'>S</span>: <span class='ident'>Into</span><span class='op'>&lt;</span><span class='ident'>Statement</span><span class='op'>&gt;&gt;</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>statement</span>: <span class='ident'>S</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>CypherResult</span>, <span class='ident'>GraphError</span><span class='op'>&gt;</span> {
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>query</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>query</span>();
         <span class='ident'>query</span>.<span class='ident'>add_statement</span>(<span class='ident'>statement</span>);

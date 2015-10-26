@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-860' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#110-114' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-870' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#120-124' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Cypher {
     // some fields omitted
 }</pre><div class='docblock'><p>Represents the cypher endpoint of a neo4j server</p>
@@ -62,13 +62,6 @@ Basic Authentication, if needed.</p>
 <div class='docblock'><p>Executes the given <code>Statement</code></p>
 
 <p>Parameter can be anything that implements <code>Into&lt;Statement&gt;</code>, <code>&amp;str</code> or <code>Statement</code> itself</p>
-
-<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1><pre class='rust rust-example-rendered'>
-<span class='comment'>// `&amp;str` implements `Into&lt;Statement&gt;`</span>
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>cypher</span>.<span class='ident'>exec</span>(<span class='string'>&quot;MATCH n RETURN n&quot;</span>);
-<span class='comment'>// Creating `Statement` by hand</span>
-<span class='kw'>let</span> <span class='ident'>statement</span> <span class='op'>=</span> <span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='string'>&quot;MATCH n RETURN n&quot;</span>);
-<span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>cypher</span>.<span class='ident'>exec</span>(<span class='ident'>statement</span>);</pre>
 </div><h4 id='method.transaction' class='method'><code>fn <a href='#method.transaction' class='fnname'>transaction</a>(&amp;self) -&gt; <a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Created.html' title='rusted_cypher::cypher::transaction::Created'>Created</a>&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>

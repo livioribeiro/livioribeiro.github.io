@@ -53,8 +53,6 @@ driver for a relational database.</p>
 
 <p>You can execute queries inside a transaction or simply execute queries that commit immediately.</p>
 
-<p>It MAY be extended to support other resources of the neo4j REST api.</p>
-
 <h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
 <p>Code in examples are assumed to be wrapped in:</p>
 <pre class='rust rust-example-rendered'>
@@ -112,14 +110,16 @@ driver for a relational database.</p>
 
 <span class='kw'>let</span> (<span class='kw-2'>mut</span> <span class='ident'>transaction</span>, <span class='ident'>results</span>) <span class='op'>=</span> <span class='ident'>transaction</span>.<span class='ident'>begin</span>().<span class='ident'>unwrap</span>();
 
-<span class='ident'>transaction</span>.<span class='ident'>add_statement</span>(<span class='string'>&quot;CREATE (n:IN_TRANSACTION { name: &#39;Python&#39;, level: &#39;high&#39;, safe: true })&quot;</span>);
-<span class='ident'>transaction</span>.<span class='ident'>exec</span>().<span class='ident'>unwrap</span>();
+<span class='comment'>// Use `exec` to execute a single statement</span>
+<span class='ident'>transaction</span>.<span class='ident'>exec</span>(<span class='string'>&quot;CREATE (n:IN_TRANSACTION { name: &#39;Python&#39;, level: &#39;high&#39;, safe: true })&quot;</span>)
+    .<span class='ident'>unwrap</span>();
 
+<span class='comment'>// use `add_statement` (or `with_statement`) and `send` to executes multiple statements</span>
 <span class='kw'>let</span> <span class='ident'>stmt</span> <span class='op'>=</span> <span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='string'>&quot;MATCH (n:IN_TRANSACTION) WHERE (n.safe = {safeness}) RETURN n&quot;</span>)
     .<span class='ident'>with_param</span>(<span class='string'>&quot;safeness&quot;</span>, <span class='boolval'>true</span>);
 
 <span class='ident'>transaction</span>.<span class='ident'>add_statement</span>(<span class='ident'>stmt</span>);
-<span class='kw'>let</span> <span class='ident'>results</span> <span class='op'>=</span> <span class='ident'>transaction</span>.<span class='ident'>exec</span>().<span class='ident'>unwrap</span>();
+<span class='kw'>let</span> <span class='ident'>results</span> <span class='op'>=</span> <span class='ident'>transaction</span>.<span class='ident'>send</span>().<span class='ident'>unwrap</span>();
 
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>results</span>[<span class='number'>0</span>].<span class='ident'>data</span>.<span class='ident'>len</span>(), <span class='number'>2</span>);
 
