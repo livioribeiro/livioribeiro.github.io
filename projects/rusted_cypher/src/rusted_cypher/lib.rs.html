@@ -153,6 +153,37 @@
 <span id="111">111</span>
 <span id="112">112</span>
 <span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Rust crate for accessing the cypher endpoint of a neo4j server</span>
 <span class='doccomment'>//!</span>
@@ -247,6 +278,37 @@
 <span class='doccomment'>//! assert_eq!(results[0].data.len(), 2);</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! transaction.rollback();</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ## Statements with Macro</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! There is a macro to help building statements</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! # #[macro_use] extern crate rusted_cypher;</span>
+<span class='doccomment'>//! # use rusted_cypher::GraphClient;</span>
+<span class='doccomment'>//! # use rusted_cypher::cypher::Statement;</span>
+<span class='doccomment'>//! # fn main() {</span>
+<span class='doccomment'>//! # let graph = GraphClient::connect(&quot;http://neo4j:neo4j@localhost:7474/db/data&quot;).unwrap();</span>
+<span class='doccomment'>//! let statement = cypher_stmt!(</span>
+<span class='doccomment'>//!     &quot;CREATE (n:WITH_MACRO { name: {name}, level: {level}, safe: {safe} })&quot; {</span>
+<span class='doccomment'>//!         &quot;name&quot; =&gt; &quot;Rust&quot;,</span>
+<span class='doccomment'>//!         &quot;level&quot; =&gt; &quot;low&quot;,</span>
+<span class='doccomment'>//!         &quot;safe&quot; =&gt; true</span>
+<span class='doccomment'>//!     }</span>
+<span class='doccomment'>//! );</span>
+<span class='doccomment'>//! graph.cypher().exec(statement).unwrap();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let statement = cypher_stmt!(&quot;MATCH (n:WITH_MACRO) WHERE n.name = {name} RETURN n&quot; {</span>
+<span class='doccomment'>//!     &quot;name&quot; =&gt; &quot;Rust&quot;</span>
+<span class='doccomment'>//! });</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let results = graph.cypher().exec(statement).unwrap();</span>
+<span class='doccomment'>//! assert_eq!(results.data.len(), 1);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let statement = cypher_stmt!(&quot;MATCH (n:WITH_MACRO) DELETE n&quot;);</span>
+<span class='doccomment'>//! graph.cypher().exec(statement).unwrap();</span>
+<span class='doccomment'>//! # }</span>
 <span class='doccomment'>//! ```</span>
 
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>custom_derive</span>, <span class='ident'>plugin</span>))]</span>

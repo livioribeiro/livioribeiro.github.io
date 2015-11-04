@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `graph` mod in crate `rusted_cypher`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, graph">
+    <meta name="description" content="API documentation for the Rust `cypher_stmt!` macro in crate `rusted_cypher`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, cypher_stmt!">
 
-    <title>rusted_cypher::graph - Rust</title>
+    <title>rusted_cypher::cypher_stmt! - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
 
     
     
@@ -26,7 +26,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../index.html'>rusted_cypher</a></p><script>window.sidebarCurrent = {name: 'graph', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+        <p class='location'><a href='index.html'>rusted_cypher</a></p><script>window.sidebarCurrent = {name: 'cypher_stmt!', ty: 'macro', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -40,30 +40,21 @@
         </form>
     </nav>
 
-    <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>rusted_cypher</a>::<wbr><a class='mod' href=''>graph</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content macro">
+<h1 class='fqn'><span class='in-band'><a href='index.html'>rusted_cypher</a>::<wbr><a class='macro' href=''>cypher_stmt!</a></span><span class='out-of-band'><span id='render-detail'>
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-935' class='srclink' href='../../src/rusted_cypher/graph.rs.html#1-158' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.GraphClient.html'
-                               title='rusted_cypher::graph::GraphClient'>GraphClient</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='struct' href='struct.ServiceRoot.html'
-                               title='rusted_cypher::graph::ServiceRoot'>ServiceRoot</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                </table></section>
+        </span><a id='src-1419' class='srclink' href='../src/rusted_cypher/cypher/statement.rs.html#7-13' title='goto source code'>[src]</a></span></h1>
+<pre class='rust macro'>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>cypher_stmt</span> {
+    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> ) <span class='op'>=&gt;</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>) };
+    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> { $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>:<span class='ident'>expr</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>expr</span> ),<span class='op'>+</span> } ) <span class='op'>=&gt;</span> {
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>)
+            $(.<span class='ident'>with_param</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>))<span class='op'>*</span>
+    }
+}</pre>
+</section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -115,13 +106,13 @@
     
 
     <script>
-        window.rootPath = "../../";
+        window.rootPath = "../";
         window.currentCrate = "rusted_cypher";
         window.playgroundUrl = "";
     </script>
-    <script src="../../jquery.js"></script>
-    <script src="../../main.js"></script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script async src="../search-index.js"></script>
 </body>
 </html>

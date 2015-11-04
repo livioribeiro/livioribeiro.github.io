@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["cypher","Provides structs used to interact with the cypher transaction endpoint"],["error",""],["graph",""]]});
+initSidebarItems({"macro":[["cypher_stmt!",""]],"mod":[["cypher","Provides structs used to interact with the cypher transaction endpoint"],["error",""],["graph",""]]});
