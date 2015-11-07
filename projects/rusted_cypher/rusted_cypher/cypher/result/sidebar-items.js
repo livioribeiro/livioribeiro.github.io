@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["CypherResult",""],["QueryResult",""],["Row",""],["RowResult",""],["Rows",""]],"trait":[["ResultTrait",""]]});

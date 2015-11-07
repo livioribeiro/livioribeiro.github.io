@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CypherResult","Holds the result of a cypher query"],["QueryResult",""],["Row",""],["RowResult","Holds a single row of the result of a cypher query"],["Rows",""]],"trait":[["ResultTrait",""]]});

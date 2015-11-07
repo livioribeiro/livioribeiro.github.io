@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Created",""],["Started",""],["Transaction","Provides methods to interact with a transaction"]]});

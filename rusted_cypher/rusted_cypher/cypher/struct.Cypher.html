@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Cypher` struct in crate `rusted_cypher`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Cypher">
+
+    <title>rusted_cypher::cypher::Cypher - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>rusted_cypher</a>::<wbr><a href='index.html'>cypher</a></p><script>window.sidebarCurrent = {name: 'Cypher', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>rusted_cypher</a>::<wbr><a href='index.html'>cypher</a>::<wbr><a class='struct' href=''>Cypher</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-885' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#120-124' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Cypher {
+    // some fields omitted
+}</pre><div class='docblock'><p>Represents the cypher endpoint of a neo4j server</p>
+
+<p>The <code>Cypher</code> struct holds information about the cypher enpoint. It is used to create the queries
+that are sent to the server.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../rusted_cypher/cypher/struct.Cypher.html' title='rusted_cypher::cypher::Cypher'>Cypher</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(endpoint: Url, headers: <a class='struct' href='https://hyperium.github.io/hyper/hyper/header/struct.Headers.html' title='hyper::header::Headers'>Headers</a>) -&gt; Self</code></h4>
+<div class='docblock'><p>Creates a new Cypher</p>
+
+<p>Its arguments are the cypher transaction endpoint and the HTTP headers containing HTTP
+Basic Authentication, if needed.</p>
+</div><h4 id='method.query' class='method'><code>fn <a href='#method.query' class='fnname'>query</a>(&amp;self) -&gt; <a class='struct' href='../../rusted_cypher/cypher/struct.CypherQuery.html' title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a></code></h4>
+<div class='docblock'><p>Creates a new <code>CypherQuery</code></p>
+</div><h4 id='method.exec' class='method'><code>fn <a href='#method.exec' class='fnname'>exec</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(&amp;self, statement: S) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>, <a class='struct' href='../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+<div class='docblock'><p>Executes the given <code>Statement</code></p>
+
+<p>Parameter can be anything that implements <code>Into&lt;Statement&gt;</code>, <code>&amp;str</code> or <code>Statement</code> itself</p>
+</div><h4 id='method.transaction' class='method'><code>fn <a href='#method.transaction' class='fnname'>transaction</a>(&amp;self) -&gt; <a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Created.html' title='rusted_cypher::cypher::transaction::Created'>Created</a>&gt;</code></h4>
+<div class='docblock'><p>Creates a new <code>Transaction</code></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rusted_cypher";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>
