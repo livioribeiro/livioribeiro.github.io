@@ -9,6 +9,7 @@
 
     <title>rusted_cypher::cypher_stmt! - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,14 +46,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1428' class='srclink' href='../src/rusted_cypher/cypher/statement.rs.html#27-33' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1458' class='srclink' href='../src/rusted_cypher/cypher/statement.rs.html#24-30' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>cypher_stmt</span> {
-    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> ) <span class='op'>=&gt;</span> { <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>) };
-    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> { $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>:<span class='ident'>expr</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>expr</span> ),<span class='op'>+</span> } ) <span class='op'>=&gt;</span> {
-        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>Statement</span>::<span class='ident'>new</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>)
-            $(.<span class='ident'>with_param</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>))<span class='op'>*</span>
-    }
+    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> ) <span class='op'>=&gt;</span> { ... };
+    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> { $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>:<span class='ident'>expr</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>expr</span> ),<span class='op'>+</span> } ) <span class='op'>=&gt;</span> { ... };
 }</pre>
 <div class='docblock'><p>Helper macro to simplify the creation of complex statements</p>
 
@@ -127,6 +125,6 @@ must be in the format <code>&quot;param&quot; =&gt; value</code> and wrapped in 
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

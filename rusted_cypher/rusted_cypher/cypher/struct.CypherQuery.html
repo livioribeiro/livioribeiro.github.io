@@ -9,6 +9,7 @@
 
     <title>rusted_cypher::cypher::CypherQuery - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-913' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#186-189' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-938' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#211-214' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct CypherQuery&lt;'a&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Represents a cypher query</p>
@@ -54,10 +55,11 @@
 
 <p>The query parameters must implement <code>Serialize</code> so they can be serialized into JSON in order to
 be sent to the server</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../../rusted_cypher/cypher/struct.CypherQuery.html' title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.with_statement' class='method'><code>fn <a href='#method.with_statement' class='fnname'>with_statement</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(self, statement: T) -&gt; Self</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../../rusted_cypher/cypher/struct.CypherQuery.html' title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.with_statement' class='method'><code>fn <a href='#method.with_statement' class='fnname'>with_statement</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/struct.Statement.html' title='rusted_cypher::Statement'>Statement</a>&gt;&gt;(self, statement: T) -&gt; Self</code></h4>
 <div class='docblock'><p>Adds statements in builder style</p>
-</div><h4 id='method.add_statement' class='method'><code>fn <a href='#method.add_statement' class='fnname'>add_statement</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(&amp;mut self, statement: T)</code></h4>
-<h4 id='method.set_statements' class='method'><code>fn <a href='#method.set_statements' class='fnname'>set_statements</a>(&amp;mut self, statements: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;)</code></h4>
+</div><h4 id='method.add_statement' class='method'><code>fn <a href='#method.add_statement' class='fnname'>add_statement</a>&lt;T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/struct.Statement.html' title='rusted_cypher::Statement'>Statement</a>&gt;&gt;(&amp;mut self, statement: T)</code></h4>
+<h4 id='method.statements' class='method'><code>fn <a href='#method.statements' class='fnname'>statements</a>(&amp;self) -&gt; &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../rusted_cypher/struct.Statement.html' title='rusted_cypher::Statement'>Statement</a>&gt;</code></h4>
+<h4 id='method.set_statements' class='method'><code>fn <a href='#method.set_statements' class='fnname'>set_statements</a>(&amp;mut self, statements: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../rusted_cypher/struct.Statement.html' title='rusted_cypher::Statement'>Statement</a>&gt;)</code></h4>
 <h4 id='method.send' class='method'><code>fn <a href='#method.send' class='fnname'>send</a>(self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>&gt;, <a class='struct' href='../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
 <div class='docblock'><p>Sends the query to the server</p>
 
@@ -122,6 +124,6 @@ into a <code>Vec&lt;CypherResult&gt;</code> in order to match the response of th
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

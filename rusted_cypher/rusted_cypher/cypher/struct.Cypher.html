@@ -9,6 +9,7 @@
 
     <title>rusted_cypher::cypher::Cypher - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-885' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#120-124' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-910' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#145-149' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Cypher {
     // some fields omitted
 }</pre><div class='docblock'><p>Represents the cypher endpoint of a neo4j server</p>
@@ -59,7 +60,7 @@ that are sent to the server.</p>
 Basic Authentication, if needed.</p>
 </div><h4 id='method.query' class='method'><code>fn <a href='#method.query' class='fnname'>query</a>(&amp;self) -&gt; <a class='struct' href='../../rusted_cypher/cypher/struct.CypherQuery.html' title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a></code></h4>
 <div class='docblock'><p>Creates a new <code>CypherQuery</code></p>
-</div><h4 id='method.exec' class='method'><code>fn <a href='#method.exec' class='fnname'>exec</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>&gt;&gt;(&amp;self, statement: S) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>, <a class='struct' href='../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+</div><h4 id='method.exec' class='method'><code>fn <a href='#method.exec' class='fnname'>exec</a>&lt;S: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../rusted_cypher/struct.Statement.html' title='rusted_cypher::Statement'>Statement</a>&gt;&gt;(&amp;self, statement: S) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>, <a class='struct' href='../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
 <div class='docblock'><p>Executes the given <code>Statement</code></p>
 
 <p>Parameter can be anything that implements <code>Into&lt;Statement&gt;</code>, <code>&amp;str</code> or <code>Statement</code> itself</p>
@@ -124,6 +125,6 @@ Basic Authentication, if needed.</p>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
     <title>error.rs.html -- source</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -173,6 +174,20 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
@@ -181,6 +196,9 @@
 <span class='kw'>use</span> <span class='ident'>url</span>;
 <span class='kw'>use</span> <span class='ident'>serde_json</span>;
 <span class='kw'>use</span> <span class='ident'>time</span>;
+
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc-serialize&quot;</span>)]</span>
+<span class='kw'>use</span> <span class='ident'>rustc_serialize</span>::<span class='ident'>json</span> <span class='kw'>as</span> <span class='ident'>rustc_json</span>;
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Debug</span>, <span class='ident'>Deserialize</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Neo4jError</span> {
@@ -283,6 +301,17 @@
     }
 }
 
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc-serialize&quot;</span>)]</span>
+<span class='kw'>impl</span> <span class='ident'>From</span><span class='op'>&lt;</span><span class='ident'>rustc_json</span>::<span class='ident'>DecoderError</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>GraphError</span> {
+    <span class='kw'>fn</span> <span class='ident'>from</span>(<span class='ident'>error</span>: <span class='ident'>rustc_json</span>::<span class='ident'>DecoderError</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
+        <span class='ident'>GraphError</span> {
+            <span class='ident'>message</span>: <span class='string'>&quot;rustc_serialize::json::DecoderError&quot;</span>.<span class='ident'>to_owned</span>(),
+            <span class='ident'>neo4j_errors</span>: <span class='prelude-val'>None</span>,
+            <span class='ident'>cause</span>: <span class='prelude-val'>Some</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>error</span>))
+        }
+    }
+}
+
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>TimeParseError</span>(<span class='ident'>time</span>::<span class='ident'>ParseError</span>, <span class='ident'>String</span>);
 
@@ -367,6 +396,6 @@
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
     <title>rusted_cypher::cypher - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-11' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#1-334' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-11' class='srclink' href='../../src/rusted_cypher/cypher/mod.rs.html#1-376' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Provides structs used to interact with the cypher transaction endpoint</p>
 
 <p>The types declared in this module, save for <code>Statement</code>, don&#39;t need to be instantiated
@@ -66,7 +67,7 @@ directly, since they can be obtained from the <code>GraphClient</code>.</p>
 
 <h2 id='execute-multiple-queries' class='section-header'><a href='#execute-multiple-queries'>Execute multiple queries</a></h2><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>query</span> <span class='op'>=</span> <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>query</span>()
-    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n.value as value&quot;</span>)
+    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:SOME_CYPHER_QUERY) RETURN n.value as value&quot;</span>)
     .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:OTHER_CYPHER_QUERY) RETURN n&quot;</span>);
 
 <span class='kw'>let</span> <span class='ident'>results</span> <span class='op'>=</span> <span class='ident'>query</span>.<span class='ident'>send</span>().<span class='ident'>unwrap</span>();
@@ -78,12 +79,11 @@ directly, since they can be obtained from the <code>GraphClient</code>.</p>
 
 <h2 id='start-a-transaction' class='section-header'><a href='#start-a-transaction'>Start a transaction</a></h2><pre class='rust rust-example-rendered'>
 <span class='kw'>let</span> (<span class='ident'>transaction</span>, <span class='ident'>results</span>) <span class='op'>=</span> <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>transaction</span>()
-    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:CYPHER_QUERY) RETURN n&quot;</span>)
+    .<span class='ident'>with_statement</span>(<span class='string'>&quot;MATCH (n:TRANSACTION_CYPHER_QUERY) RETURN n&quot;</span>)
     .<span class='ident'>begin</span>().<span class='ident'>unwrap</span>();
 </pre>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use self::<a class='mod'
-                                            href='./statement/index.html'>statement</a>::<a class='struct' href='../../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
                                             href='./transaction/index.html'>transaction</a>::<a class='struct' href='../../rusted_cypher/cypher/transaction/struct.Transaction.html' title='rusted_cypher::cypher::transaction::Transaction'>Transaction</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
                                             href='./result/index.html'>result</a>::<a class='struct' href='../../rusted_cypher/cypher/result/struct.CypherResult.html' title='rusted_cypher::cypher::result::CypherResult'>CypherResult</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
@@ -127,6 +127,15 @@ directly, since they can be obtained from the <code>GraphClient</code>.</p>
                                title='rusted_cypher::cypher::CypherQuery'>CypherQuery</a></td>
                         <td class='docblock short'>
                              <p>Represents a cypher query</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Statement.html'
+                               title='rusted_cypher::cypher::Statement'>Statement</a></td>
+                        <td class='docblock short'>
+                             <p>Represents a statement to be sent to the server</p>
 
                         </td>
                     </tr>
@@ -189,6 +198,6 @@ directly, since they can be obtained from the <code>GraphClient</code>.</p>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

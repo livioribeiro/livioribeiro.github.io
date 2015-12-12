@@ -9,6 +9,7 @@
 
     <title>lib.rs.html -- source</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -184,6 +185,21 @@
 <span id="142">142</span>
 <span id="143">143</span>
 <span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Rust crate for accessing the cypher endpoint of a neo4j server</span>
 <span class='doccomment'>//!</span>
@@ -191,6 +207,17 @@
 <span class='doccomment'>//! driver for a relational database.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! You can execute queries inside a transaction or simply execute queries that commit immediately.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! # Serialization: `serde` vs `rustc-serialize`</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! By default, `rusted-cypher` supports types that implement [serde](https://github.com/serde-rs/serde)</span>
+<span class='doccomment'>//! traits, `Serialize` and `Deserialize`, in query parameters and to retrieve result values.</span>
+<span class='doccomment'>//! If you want to use `rustc-serialize` instead, just add the feature `rustc-serialize`:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```toml</span>
+<span class='doccomment'>//! [dependencies]</span>
+<span class='doccomment'>//! rusted_cypher = { version = &quot;*&quot;, features = [&quot;rustc-serialize&quot;] }</span>
+<span class='doccomment'>//! ```</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//!</span>
@@ -311,13 +338,17 @@
 <span class='doccomment'>//! # }</span>
 <span class='doccomment'>//! ```</span>
 
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>custom_derive</span>, <span class='ident'>plugin</span>))]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>custom_attribute</span>, <span class='ident'>custom_derive</span>, <span class='ident'>plugin</span>))]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>plugin</span>(<span class='ident'>serde_macros</span>))]</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>hyper</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>url</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde_json</span>;
+
+<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc-serialize&quot;</span>)]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span>;
+
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>semver</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
 
@@ -389,6 +420,6 @@
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

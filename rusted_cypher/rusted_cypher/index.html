@@ -9,6 +9,7 @@
 
     <title>rusted_cypher - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -45,13 +46,22 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/rusted_cypher/lib.rs.html#1-144' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/rusted_cypher/lib.rs.html#1-159' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Rust crate for accessing the cypher endpoint of a neo4j server</p>
 
 <p>This is a prototype for accessing the cypher endpoint of a neo4j server, like a sql
 driver for a relational database.</p>
 
 <p>You can execute queries inside a transaction or simply execute queries that commit immediately.</p>
+
+<h1 id='serialization-serde-vs-rustc-serialize' class='section-header'><a href='#serialization-serde-vs-rustc-serialize'>Serialization: <code>serde</code> vs <code>rustc-serialize</code></a></h1>
+<p>By default, <code>rusted-cypher</code> supports types that implement <a href="https://github.com/serde-rs/serde">serde</a>
+traits, <code>Serialize</code> and <code>Deserialize</code>, in query parameters and to retrieve result values.
+If you want to use <code>rustc-serialize</code> instead, just add the feature <code>rustc-serialize</code>:</p>
+
+<pre><code class="language-toml">[dependencies]
+rusted_cypher = { version = &quot;*&quot;, features = [&quot;rustc-serialize&quot;] }
+</code></pre>
 
 <h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
 <p>Code in examples are assumed to be wrapped in:</p>
@@ -147,7 +157,7 @@ driver for a relational database.</p>
 <span class='kw'>let</span> <span class='ident'>statement</span> <span class='op'>=</span> <span class='macro'>cypher_stmt</span><span class='macro'>!</span>(<span class='string'>&quot;MATCH (n:WITH_MACRO) DELETE n&quot;</span>);
 <span class='ident'>graph</span>.<span class='ident'>cypher</span>().<span class='ident'>exec</span>(<span class='ident'>statement</span>).<span class='ident'>unwrap</span>();</pre>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>pub use graph::<a class='struct' href='../rusted_cypher/graph/struct.GraphClient.html' title='rusted_cypher::graph::GraphClient'>GraphClient</a>;</code></td></tr><tr><td><code>pub use cypher::<a class='struct' href='../rusted_cypher/cypher/statement/struct.Statement.html' title='rusted_cypher::cypher::statement::Statement'>Statement</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table><tr><td><code>pub use graph::<a class='struct' href='../rusted_cypher/graph/struct.GraphClient.html' title='rusted_cypher::graph::GraphClient'>GraphClient</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='mod' href='cypher/index.html'
@@ -180,6 +190,16 @@ driver for a relational database.</p>
                                title='rusted_cypher::cypher_stmt!'>cypher_stmt!</a></td>
                         <td class='docblock short'>
                              <p>Helper macro to simplify the creation of complex statements</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Statement.html'
+                               title='rusted_cypher::Statement'>Statement</a></td>
+                        <td class='docblock short'>
+                             <p>Represents a statement to be sent to the server</p>
 
                         </td>
                     </tr>
@@ -242,6 +262,6 @@ driver for a relational database.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>
