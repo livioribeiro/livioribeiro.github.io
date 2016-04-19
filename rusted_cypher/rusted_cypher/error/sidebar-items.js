@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["GraphError",""],["Neo4jError",""],["TimeParseError",""]]});
+initSidebarItems({"enum":[["GraphError",""]],"struct":[["Neo4jError",""],["TimeParseError",""]]});

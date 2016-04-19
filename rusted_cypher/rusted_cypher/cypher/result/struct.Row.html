@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
 
     
     
@@ -43,14 +44,14 @@
 
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>rusted_cypher</a>::<wbr><a href='../index.html'>cypher</a>::<wbr><a href='index.html'>result</a>::<wbr><a class='struct' href=''>Row</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-823' class='srclink' href='../../../src/rusted_cypher/cypher/result.rs.html#72-75' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-836' class='srclink' href='../../../src/rusted_cypher/src/cypher/result.rs.html#72-75' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Row&lt;'a&gt; {
     // some fields omitted
 }</pre><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../../../rusted_cypher/cypher/result/struct.Row.html' title='rusted_cypher::cypher::result::Row'>Row</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(columns: &amp;'a <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;, data: &amp;'a <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;Value&gt;) -&gt; Self</code></h4>
-<h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>&lt;T: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a>&gt;(&amp;self, column: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;T, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+<h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>&lt;T: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a>&gt;(&amp;self, column: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;T, <a class='enum' href='../../../rusted_cypher/error/enum.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
 <div class='docblock'><p>Gets the value of a column by its name</p>
 
 <p>The column name must be exactly as it was named in the query. For example, if your query
@@ -59,7 +60,7 @@ and <code>row.get(&quot;n.gender&quot;)</code> since this is what the neo4j api 
 
 <p>If the column does not exist in the row, an <code>Err</code> is returned with the message
 <code>&quot;No such column: {column_name}&quot;</code>.</p>
-</div><h4 id='method.get_n' class='method'><code>fn <a href='#method.get_n' class='fnname'>get_n</a>&lt;T: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a>&gt;(&amp;self, column: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;T, <a class='struct' href='../../../rusted_cypher/error/struct.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
+</div><h4 id='method.get_n' class='method'><code>fn <a href='#method.get_n' class='fnname'>get_n</a>&lt;T: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a>&gt;(&amp;self, column: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;T, <a class='enum' href='../../../rusted_cypher/error/enum.GraphError.html' title='rusted_cypher::error::GraphError'>GraphError</a>&gt;</code></h4>
 <div class='docblock'><p>Gets the value of a column by order</p>
 
 <p>Column number is 0 based, so the first column is 0, the second is 1 and so on.</p>
@@ -109,7 +110,7 @@ message <code>&quot;No such column at index {column_number}&quot;</code>.</p>
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

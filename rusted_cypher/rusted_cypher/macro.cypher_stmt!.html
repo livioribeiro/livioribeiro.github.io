@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
+    
 
     
     
@@ -43,25 +44,26 @@
 
     <section id='main' class="content macro">
 <h1 class='fqn'><span class='in-band'><a href='index.html'>rusted_cypher</a>::<wbr><a class='macro' href=''>cypher_stmt!</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-1458' class='srclink' href='../src/rusted_cypher/cypher/statement.rs.html#24-30' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-1611' class='srclink' href='../src/rusted_cypher/src/cypher/statement.rs.html#24-30' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>cypher_stmt</span> {
     ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> ) <span class='op'>=&gt;</span> { ... };
-    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span> { $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>:<span class='ident'>expr</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>expr</span> ),<span class='op'>+</span> } ) <span class='op'>=&gt;</span> { ... };
+    ( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>s</span>:<span class='ident'>expr</span>, { $( <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>k</span>:<span class='ident'>expr</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>v</span>:<span class='ident'>expr</span> ),<span class='op'>+</span> } ) <span class='op'>=&gt;</span> { ... };
 }</pre>
 <div class='docblock'><p>Helper macro to simplify the creation of complex statements</p>
 
 <p>Pass in the statement text as the first argument followed by the (optional) parameters, which
 must be in the format <code>&quot;param&quot; =&gt; value</code> and wrapped in <code>{}</code></p>
 
-<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1><pre class='rust rust-example-rendered'>
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<pre class='rust rust-example-rendered'>
 <span class='comment'>// Without parameters</span>
 <span class='kw'>let</span> <span class='ident'>statement</span> <span class='op'>=</span> <span class='macro'>cypher_stmt</span><span class='macro'>!</span>(<span class='string'>&quot;MATCH n RETURN n&quot;</span>);
 <span class='comment'>// With parameters</span>
-<span class='kw'>let</span> <span class='ident'>statement</span> <span class='op'>=</span> <span class='macro'>cypher_stmt</span><span class='macro'>!</span>(<span class='string'>&quot;MATCH n RETURN n&quot;</span> {
+<span class='kw'>let</span> <span class='ident'>statement</span> <span class='op'>=</span> <span class='macro'>cypher_stmt</span><span class='macro'>!</span>(<span class='string'>&quot;MATCH n RETURN n&quot;</span>, {
     <span class='string'>&quot;param1&quot;</span> <span class='op'>=&gt;</span> <span class='string'>&quot;value1&quot;</span>,
     <span class='string'>&quot;param2&quot;</span> <span class='op'>=&gt;</span> <span class='number'>2</span>,
     <span class='string'>&quot;param3&quot;</span> <span class='op'>=&gt;</span> <span class='number'>3.0</span>
@@ -109,7 +111,7 @@ must be in the format <code>&quot;param&quot; =&gt; value</code> and wrapped in 
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

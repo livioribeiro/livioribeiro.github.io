@@ -9,8 +9,9 @@
 
     <title>transaction.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
 
     
     
@@ -426,6 +427,12 @@
 <span id="383">383</span>
 <span id="384">384</span>
 <span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Transaction management through neo4j&#39;s transaction endpoint</span>
 <span class='doccomment'>//!</span>
@@ -628,7 +635,7 @@
             <span class='prelude-val'>Some</span>(<span class='ident'>location</span>) <span class='op'>=&gt;</span> <span class='ident'>location</span>.<span class='number'>0</span>.<span class='ident'>to_owned</span>(),
             <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> {
                 <span class='macro'>error</span><span class='macro'>!</span>(<span class='string'>&quot;No transaction URI returned from server&quot;</span>);
-                <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>GraphError</span>::<span class='ident'>new</span>(<span class='string'>&quot;No transaction URI returned from server&quot;</span>));
+                <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>GraphError</span>::<span class='ident'>Transaction</span>(<span class='string'>&quot;No transaction URI returned from server&quot;</span>.<span class='ident'>to_owned</span>()));
             },
         };
 
@@ -666,14 +673,18 @@
         <span class='self'>self</span>.<span class='ident'>add_statement</span>(<span class='ident'>statement</span>);
 
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>results</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>send</span>());
-        <span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>results</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(<span class='ident'>GraphError</span>::<span class='ident'>new</span>(<span class='string'>&quot;Server returned no results&quot;</span>)));
+        <span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>results</span>.<span class='ident'>pop</span>().<span class='ident'>ok_or</span>(
+            <span class='ident'>GraphError</span>::<span class='ident'>Statement</span>(<span class='string'>&quot;Server returned no results&quot;</span>.<span class='ident'>to_owned</span>())
+        ));
 
         <span class='prelude-val'>Ok</span>(<span class='ident'>result</span>)
     }
 
     <span class='doccomment'>/// Executes the statements added via `add_statement` or `with_statement`</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>send</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>CypherResult</span><span class='op'>&gt;</span>, <span class='ident'>GraphError</span><span class='op'>&gt;</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>send_query</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>client</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>transaction</span>, <span class='self'>self</span>.<span class='ident'>headers</span>, <span class='self'>self</span>.<span class='ident'>statements</span>.<span class='ident'>clone</span>()));
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>send_query</span>(
+            <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>client</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>transaction</span>, <span class='self'>self</span>.<span class='ident'>headers</span>, <span class='self'>self</span>.<span class='ident'>statements</span>.<span class='ident'>clone</span>()
+        ));
         <span class='self'>self</span>.<span class='ident'>statements</span>.<span class='ident'>clear</span>();
 
         <span class='kw'>let</span> <span class='ident'>result</span>: <span class='ident'>TransactionResult</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>parse_response</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>res</span>));
@@ -689,7 +700,9 @@
     <span class='doccomment'>/// Commits the transaction, returning the results</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>commit</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>CypherResult</span><span class='op'>&gt;</span>, <span class='ident'>GraphError</span><span class='op'>&gt;</span> {
         <span class='macro'>debug</span><span class='macro'>!</span>(<span class='string'>&quot;Commiting transaction {}&quot;</span>, <span class='self'>self</span>.<span class='ident'>transaction</span>);
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>send_query</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>client</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>commit</span>, <span class='self'>self</span>.<span class='ident'>headers</span>, <span class='self'>self</span>.<span class='ident'>statements</span>));
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>res</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>send_query</span>(
+            <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>client</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>commit</span>, <span class='self'>self</span>.<span class='ident'>headers</span>, <span class='self'>self</span>.<span class='ident'>statements</span>
+        ));
 
         <span class='kw'>let</span> <span class='ident'>result</span>: <span class='ident'>CommitResult</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>super</span>::<span class='ident'>parse_response</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>res</span>));
         <span class='macro'>debug</span><span class='macro'>!</span>(<span class='string'>&quot;Transaction commited {}&quot;</span>, <span class='self'>self</span>.<span class='ident'>transaction</span>);
@@ -856,7 +869,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>
@@ -865,13 +878,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
+        window.rootPath = "../../../../";
         window.currentCrate = "rusted_cypher";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
     
-    <script defer src="../../../search-index.js"></script>
+    <script defer src="../../../../search-index.js"></script>
 </body>
 </html>

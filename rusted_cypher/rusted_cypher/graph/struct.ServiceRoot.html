@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
+    
 
     
     
@@ -43,10 +44,10 @@
 
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>rusted_cypher</a>::<wbr><a href='index.html'>graph</a>::<wbr><a class='struct' href=''>ServiceRoot</a></span><span class='out-of-band'><span id='render-detail'>
-            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                [<span class='inner'>&#x2212;</span>]
-            </a>
-        </span><a id='src-983' class='srclink' href='../../src/rusted_cypher/graph.rs.html#15-29' title='goto source code'>[src]</a></span></h1>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-992' class='srclink' href='../../src/rusted_cypher/src/graph.rs.html#16-30' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct ServiceRoot {
     pub extensions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, Value&gt;,
     pub node: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
@@ -63,19 +64,19 @@
     pub neo4j_version: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
 }</pre><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
-                                  <td id='structfield.extensions'><code>extensions</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.node'><code>node</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.node_index'><code>node_index</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.relationship_index'><code>relationship_index</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.extensions_info'><code>extensions_info</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.relationship_types'><code>relationship_types</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.batch'><code>batch</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.cypher'><code>cypher</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.indexes'><code>indexes</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.constraints'><code>constraints</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.transaction'><code>transaction</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.node_labels'><code>node_labels</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.neo4j_version'><code>neo4j_version</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a> for <a class='struct' href='../../rusted_cypher/graph/struct.ServiceRoot.html' title='rusted_cypher::graph::ServiceRoot'>ServiceRoot</a></code></h3><div class='impl-items'><h4 id='method.deserialize' class='method'><code>fn <a href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html#method.deserialize' class='fnname'>deserialize</a>&lt;__D&gt;(deserializer: &amp;mut __D) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../rusted_cypher/graph/struct.ServiceRoot.html' title='rusted_cypher::graph::ServiceRoot'>ServiceRoot</a>, __D::Error&gt; <span class='where'>where __D: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserializer.html' title='serde::de::Deserializer'>Deserializer</a></span></code></h4>
+                             <td id='structfield.extensions'><code>extensions</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.node'><code>node</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.node_index'><code>node_index</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.relationship_index'><code>relationship_index</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.extensions_info'><code>extensions_info</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.relationship_types'><code>relationship_types</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.batch'><code>batch</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.cypher'><code>cypher</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.indexes'><code>indexes</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.constraints'><code>constraints</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.transaction'><code>transaction</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.node_labels'><code>node_labels</code></td><td></td></tr><tr class='stab '>
+                             <td id='structfield.neo4j_version'><code>neo4j_version</code></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html' title='serde::de::Deserialize'>Deserialize</a> for <a class='struct' href='../../rusted_cypher/graph/struct.ServiceRoot.html' title='rusted_cypher::graph::ServiceRoot'>ServiceRoot</a></code></h3><div class='impl-items'><h4 id='method.deserialize' class='method'><code>fn <a href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserialize.html#tymethod.deserialize' class='fnname'>deserialize</a>&lt;__D&gt;(deserializer: &amp;mut __D) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../rusted_cypher/graph/struct.ServiceRoot.html' title='rusted_cypher::graph::ServiceRoot'>ServiceRoot</a>, __D::Error&gt; <span class='where'>where __D: <a class='trait' href='https://serde-rs.github.io/serde/serde/serde/de/trait.Deserializer.html' title='serde::de::Deserializer'>Deserializer</a></span></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
@@ -119,7 +120,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>

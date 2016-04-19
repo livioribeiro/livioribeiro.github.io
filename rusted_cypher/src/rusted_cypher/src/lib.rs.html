@@ -9,8 +9,9 @@
 
     <title>lib.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
 
     
     
@@ -200,6 +201,9 @@
 <span id="157">157</span>
 <span id="158">158</span>
 <span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Rust crate for accessing the cypher endpoint of a neo4j server</span>
 <span class='doccomment'>//!</span>
@@ -318,7 +322,7 @@
 <span class='doccomment'>//! # fn main() {</span>
 <span class='doccomment'>//! # let graph = GraphClient::connect(&quot;http://neo4j:neo4j@localhost:7474/db/data&quot;).unwrap();</span>
 <span class='doccomment'>//! let statement = cypher_stmt!(</span>
-<span class='doccomment'>//!     &quot;CREATE (n:WITH_MACRO { name: {name}, level: {level}, safe: {safe} })&quot; {</span>
+<span class='doccomment'>//!     &quot;CREATE (n:WITH_MACRO { name: {name}, level: {level}, safe: {safe} })&quot;, {</span>
 <span class='doccomment'>//!         &quot;name&quot; =&gt; &quot;Rust&quot;,</span>
 <span class='doccomment'>//!         &quot;level&quot; =&gt; &quot;low&quot;,</span>
 <span class='doccomment'>//!         &quot;safe&quot; =&gt; true</span>
@@ -326,7 +330,7 @@
 <span class='doccomment'>//! );</span>
 <span class='doccomment'>//! graph.cypher().exec(statement).unwrap();</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! let statement = cypher_stmt!(&quot;MATCH (n:WITH_MACRO) WHERE n.name = {name} RETURN n&quot; {</span>
+<span class='doccomment'>//! let statement = cypher_stmt!(&quot;MATCH (n:WITH_MACRO) WHERE n.name = {name} RETURN n&quot;, {</span>
 <span class='doccomment'>//!     &quot;name&quot; =&gt; &quot;Rust&quot;</span>
 <span class='doccomment'>//! });</span>
 <span class='doccomment'>//!</span>
@@ -341,19 +345,22 @@
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>feature</span>(<span class='ident'>custom_attribute</span>, <span class='ident'>custom_derive</span>, <span class='ident'>plugin</span>))]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg_attr</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>, <span class='ident'>plugin</span>(<span class='ident'>serde_macros</span>))]</span>
 
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>hyper</span>;
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>url</span>;
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde</span>;
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde_json</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>hyper</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>url</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>serde_json</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;rustc-serialize&quot;</span>)]</span>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rustc_serialize</span>;
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>semver</span>;
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>time</span>;
 
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>log</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>quick_error</span>;
+
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>log</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;serde_macros&quot;</span>)]</span>
 <span class='macro'>include</span><span class='macro'>!</span>(<span class='string'>&quot;lib.rs.in&quot;</span>);
@@ -404,7 +411,7 @@
 
                 <p>
                     Search functions by type signature (e.g.
-                    <code>vec -> usize</code>)
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
                 </p>
             </div>
         </div>
@@ -413,13 +420,13 @@
     
 
     <script>
-        window.rootPath = "../../";
+        window.rootPath = "../../../";
         window.currentCrate = "rusted_cypher";
         window.playgroundUrl = "";
     </script>
-    <script src="../../jquery.js"></script>
-    <script src="../../main.js"></script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
     
-    <script defer src="../../search-index.js"></script>
+    <script defer src="../../../search-index.js"></script>
 </body>
 </html>
